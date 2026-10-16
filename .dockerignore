@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.*
+data
+backups
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+tests
+dist
+*.zip
+*.docx
+JARVIS_MANUEL_KURULUM_REHBERI.md

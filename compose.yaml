@@ -1,0 +1,24 @@
+services:
+  jarvis:
+    build: .
+    user: "10001:10001"
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    environment:
+      PORT: "8080"
+      JARVIS_DATA_DIR: /data
+      JARVIS_SETUP_TOKEN: "${JARVIS_SETUP_TOKEN:?JARVIS_SETUP_TOKEN must be set in .env.}"
+    ports:
+      - "${JARVIS_BIND_HOST:-127.0.0.1}:${JARVIS_PORT:-8080}:8080"
+    volumes:
+      - jarvis-data:/data
+    stop_grace_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  jarvis-data:
